@@ -31,6 +31,9 @@ router.post("/recaptcha", async (req, res) => {
 		res.send("Robot");
 	}
 });
+app.get("/", (req, res) => {
+	res.send("Welcome to my portfolio website server.")
+});
 
 app.listen(port, () => {
 	dbo.connectToServer(function (err) {
