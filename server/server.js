@@ -1,9 +1,17 @@
 const express = require("express");
+const { wakeDyno } = require('heroku-keep-awake');
 const cors = require("cors");
 const router = express.Router();
 const axios = require("axios");
 const app = express();
 const port = process.env.PORT || 5000;
+
+const opts = {
+    interval: 29,
+    logging: false,
+}
+
+const DYNO_URL = 'https://anthonyzhang-server.herokuapp.com/';
 
 require("dotenv").config();
 
@@ -39,5 +47,7 @@ app.listen(port, () => {
 	dbo.connectToServer(function (err) {
 		if (err) console.error(err);
 	});
+
+	wakeDyno(DYNO_URL,opts); // Use this function when only needing to wake a single Heroku app.
 	console.log(`Server started on port ${port}`);
 });
