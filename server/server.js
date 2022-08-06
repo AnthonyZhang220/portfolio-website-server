@@ -1,5 +1,5 @@
 const express = require("express");
-const { wakeDyno } = require('heroku-keep-awake');
+const { wakeDyno } = require("heroku-keep-awake");
 const cors = require("cors");
 const router = express.Router();
 const axios = require("axios");
@@ -7,11 +7,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const opts = {
-    interval: 29,
-    logging: false,
-}
+	interval: 29,
+	logging: false,
+	stopTimes: { start: "00:00", end: "06:00" },
+};
 
-const DYNO_URL = 'https://anthonyzhang-server.herokuapp.com/';
+const DYNO_URL = "https://anthonyzhang-server.herokuapp.com/";
 
 require("dotenv").config();
 
@@ -40,7 +41,7 @@ router.post("/recaptcha", async (req, res) => {
 	}
 });
 app.get("/", (req, res) => {
-	res.send("Welcome to my portfolio website server.")
+	res.send("Welcome to my portfolio website server.");
 });
 
 app.listen(port, () => {
@@ -48,6 +49,6 @@ app.listen(port, () => {
 		if (err) console.error(err);
 	});
 
-	wakeDyno(DYNO_URL,opts); // Use this function when only needing to wake a single Heroku app.
+	wakeDyno(DYNO_URL, opts); // Use this function when only needing to wake a single Heroku app.
 	console.log(`Server started on port ${port}`);
 });
