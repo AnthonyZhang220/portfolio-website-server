@@ -30,9 +30,9 @@
 
 ## Features
 
--Provide API for my portfolio website
--Records of likes and favorites
--Connect to MongoDb
+- Provide API for my portfolio website
+- Records of likes and favorites
+- Connect to MongoDb
 
 
 ## Feedback
